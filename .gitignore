@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+
+# Environments
+.venv/
+venv/
+env/
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/
+
+# Data & model artifacts (not committed)
+data/
+*.wav
+*.mp4
+*.npy
+*.pt
+*.ckpt
+*.h5
+fusion_runs/

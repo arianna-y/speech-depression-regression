@@ -1,0 +1,14 @@
+numpy
+pandas
+scikit-learn
+matplotlib
+torch
+torchaudio
+soundfile
+tqdm
+transformers
+opensmile
+faster-whisper
+funasr
+opencc
+spacy-pkuseg
