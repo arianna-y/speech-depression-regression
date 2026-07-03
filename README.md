@@ -6,7 +6,7 @@ than the binary depressed-vs-healthy classification that all prior published wor
 on this dataset has used. Graduate research project for **CSCI 567 (Machine
 Learning) at USC**.
 
-**Authors:** Ashwini Athreya, Alicia Danielle, Rasika Ramanan, Arianna Yuan.
+**Authors:** Rasika Ramanan, Arianna Yuan, Alicia Danielle, Ashwini Athreya.
 
 ## Motivation
 
@@ -23,37 +23,37 @@ the most signal.
 
 ## Approach
 
-- **Data.** Audio modality only, n = 52 subjects (23 MDD, 29 HC), 29 recordings
+- **Data:** Audio modality only, n = 52 subjects (23 MDD, 29 HC), 29 recordings
   per subject across four elicitation tasks (clinical interview, word reading,
   passage reading, picture description).
-- **Features.** 88 **eGeMAPSv02** acoustic functionals via openSMILE; 16
+- **Features:** 88 **eGeMAPSv02** acoustic functionals via openSMILE. 16
   **Whisper**-derived linguistic features (5 lexical, 3 syntactic, 8 sentiment)
-  from Whisper-large-v3 Mandarin transcripts; plus demographic covariates.
-- **Model.** Support Vector Regression (RBF kernel) with **Elastic-Net feature
+  from Whisper-large-v3 Mandarin transcripts, plus demographic covariates.
+- **Model:** Support Vector Regression (RBF kernel) with **Elastic-Net feature
   selection**, under **nested leave-one-subject-out (LOSO)** cross-validation so
   no speaker appears in both train and test.
-- **Uncertainty.** Leave-one-out **conformal 95% prediction intervals** on every
+- **Uncertainty:** Leave-one-out **conformal 95% prediction intervals** on every
   held-out prediction.
-- **Fairness.** A post-hoc **multicalibration** step to reduce group-conditional
+- **Fairness:** A post-hoc **multicalibration** step to reduce group-conditional
   prediction bias.
 
 ## Key results
 
-- **Regression.** The best configuration (eGeMAPS + Whisper + demographics)
+- **Regression:** The best configuration (eGeMAPS + Whisper + demographics)
   reaches **RMSE 6.81** PHQ-9 points (R^2 = 0.34), a 1.75-point improvement over
   the mean-predictor baseline of 8.56. To our knowledge this is the first
   continuous PHQ-9 regression on MODMA.
-- **Task stratification.** No single-task model matches the all-tasks model,
+- **Task stratification:** No single-task model matches the all-tasks model,
   indicating the depression signal is distributed across the elicitation set
   rather than concentrated in one task. Shortening the screening protocol by
   dropping elicitations would lose signal.
-- **Valence stratification.** Positive-valence prompts are the only setting where
+- **Valence stratification:** Positive-valence prompts are the only setting where
   linguistic features beat acoustic ones, consistent with the anhedonia signal
   those prompts are designed to elicit.
-- **Calibration.** Conformal intervals attain 92.3-94.2% empirical marginal
+- **Calibration:** Conformal intervals attain 92.3-94.2% empirical marginal
   coverage, but MDD subjects are systematically under-covered relative to HC, a
   clinically important asymmetry that motivates the multicalibration step.
-- **Multicalibration.** Post-hoc correction shrinks the MDD and HC mean
+- **Multicalibration:** Post-hoc correction shrinks the MDD and HC mean
   prediction gaps from 5.79 to 0.42 and from 3.56 to 0.51 PHQ-9 points
   respectively.
 
